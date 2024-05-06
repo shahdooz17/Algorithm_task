@@ -1,5 +1,13 @@
 #include <stdio.h>
-#include <string.h>
+
+int sstrlen(const char *str) {
+    int len = 0;
+    while (*str != '\0') {
+        len++;
+        str++;
+    }
+    return len;
+}
 
 int is_balanced(char *s, int left, int right) {
     int count[256] = {0}; // Assuming ASCII characters
@@ -48,17 +56,17 @@ int longest_balanced_substring_recursive(char *s, int left, int right) {
 }
 
 int longest_balanced_substring(char *s) {
-    int n = strlen(s);
+    int n = sstrlen(s);
     return longest_balanced_substring_recursive(s, 0, n - 1);
 }
 
 int main() {
-    char s[1000];
-    printf("Enter a string: ");
-    fgets(s, sizeof(s), stdin);
-    s[strcspn(s, "\n")] = '\0';
+    char s[100];  // Adjust the size as needed
 
-    printf("Longest balanced substring length: %d\n", longest_balanced_substring(s));
+    printf("Enter a string: ");
+    scanf("%s", s);
+
+    printf("The length of the longest balanced substring is: %d\n", longest_balanced_substring(s));
 
     return 0;
 }
